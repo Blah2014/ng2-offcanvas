@@ -1,0 +1,78 @@
+ng2-offcanvas.side-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+
+    .side-nav-content {
+        position: relative;
+        width: 90%;
+        max-width: 300px;
+        background-color: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transform: translateX(calc(-100% - 5px));
+        will-change: transform;
+        transition: transform 0.2s cubic-bezier(0, 0, 0.3, 1);
+        box-shadow: 0px 0px 7px #000;
+
+        // overflow: hidden;
+        // overflow-y: auto;
+
+        .side-nav-header {
+            display: flex;
+            background-color: #ccc;
+            width: 100%;
+            height: 50px;
+            justify-content: center;
+
+            .side-nav-close-button {
+                margin-top: auto;
+                margin-bottom: auto;
+                align-self: flex-end;
+                margin-left: calc(100% - 40px);
+            }
+
+            .side-nav-close-button:hover {
+                cursor: pointer;
+            }
+        }
+
+        .side-nav-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+}
+
+ng2-offcanvas.side-nav::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 0.35s cubic-bezier(0, 0, 0.3, 1);
+}
+
+ng2-offcanvas.side-nav.show::before {
+    opacity: 1;
+}
+
+ng2-offcanvas.side-nav.show {
+    .side-nav-content {
+        transform: translateX(0%);
+        transition: transform 0.35s cubic-bezier(0, 0, 0.3, 1);
+    }
+}
